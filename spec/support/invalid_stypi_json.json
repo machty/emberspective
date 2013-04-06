@@ -1,0 +1,17 @@
+{
+    "head": 
+        "startLength": 0,
+        "endLength": 665,
+        "deltas": [
+            {
+                "text": "# NOTE: THIS IS DIRECTLY CONNECTED TO THE RAILS SERVER\n# Be careful with the changes you make, even if the Rails\n# Server fails gracefully. \n\nusers:\n  # github usernames to Stypi IDs. \n  # Your Stypi ID is the `userID` listed here:\n  # https://www.stypi.com/TRjuI0nMOsM6sRKBnnd7aeiF.json\n  # These are used to determine \"last modified by\"\n  machty: 5158c5563b8cc4e6a400569c\n  faker: fake\n\ntree:\n    name: Ember.js\n    description: The JavaScript framework you know and love. \n    children: \n    - name: Router\n      description: Blah\n    - name: Ember Data\n      description: Client-side ORM\n    - name: Perf\n      description: Performance improvements to Ember.js\n",
+                "attributes": {
+                    "authorId": "5158c5563b8cc4e6a400569c"
+                }
+            }
+        ]
+    },
+    "userId": "5158c5563b8cc4e6a400569c",
+    "version": 100,
+    "username": "machty"
+}
