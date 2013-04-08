@@ -1,5 +1,7 @@
-h1 Emberspective
-p Use this site to see what's being worked on and who's working on what.
+#side-panel
+  h1 Emberspective
+  p Use this site to see what's being worked on and who's working on what.
 
-= outlet
+#graph-container
+  = outlet
 

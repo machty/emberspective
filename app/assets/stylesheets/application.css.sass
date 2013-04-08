@@ -1,0 +1,44 @@
+@import reset
+@import bourbon
+
+$ember-pink: #F8EFEC
+$ember-orange: #F47C68
+
+body
+  background: $ember-pink image-url('dotted.png')
+
+.graph-node-view
+  background: #ffdddd
+
+  width: 200px
+  height: 200px
+  box-sizing: border-box
+  border: 2px solid black
+  //border-radius
+  border-radius: 100px
+
+  .content
+    padding-top: 70px
+    text-align: center
+
+  &.active
+    z-index: 10
+
+.application-view
+  +clearfix
+  position: relative
+  height: 100%
+
+#side-panel
+  position: absolute
+  background: $ember-orange
+  left: 0
+  top: 0
+  bottom: 0
+  width: 300px
+  z-index: 100
+
+#graph-container
+  +position(absolute, 0px 0px 0px 300px)
+
+

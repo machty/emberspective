@@ -16,7 +16,7 @@ guard 'rspec' do
 
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
-  watch(%r{^app/assets/javascripts/.*$})              { |m| "spec/features/ember_spec.rb" }
+  #watch(%r{^app/assets/javascripts/.*$})              { |m| "spec/features/ember_spec.rb" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
@@ -34,4 +34,10 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
+end
+
+require 'capybara/webkit'
+guard :konacha, :driver => :webkit do
+  watch(%r{^app/assets/javascripts/(.*)\.js(\.coffee)?$}) { |m| "#{m[1]}_spec.js" }
+  watch(%r{^spec/javascripts/.+_spec(\.js|\.js\.coffee)$})
 end

@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require prefixfree.min
+//= require prefixfree.jquery
 //= require handlebars
 //= require ember
 //= require ember-data
 //= require_self
-//= require emberspector
-Emberspector = Ember.Application.create();
+//= require emberspective
+Emberspective = Ember.Application.create();
 //= require_tree .

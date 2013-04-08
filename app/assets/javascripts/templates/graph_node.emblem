@@ -1,0 +1,11 @@
+.content
+  h1: name
+
+  if parent
+    p 
+      ' Child of
+      linkTo 'graph.show' parent: parent.name
+
+  if children
+    ul = each children
+      li: linkTo 'graph.show' this: name

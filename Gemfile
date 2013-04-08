@@ -9,6 +9,7 @@ group :development do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'guard-konacha'
   gem 'rb-fsevent', '~> 0.9'
 end
 
@@ -21,6 +22,7 @@ group :test, :development do
   gem "factory_girl_rails", "~> 4.2.0", require: false
   gem 'pry-rails'
   gem 'pry-stack_explorer'
+  gem 'konacha'
 end
 
 group :production do
@@ -45,6 +47,7 @@ gem 'ember-rails'
 gem 'emblem-rails'
 
 gem 'httparty'
+gem 'bourbon'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
