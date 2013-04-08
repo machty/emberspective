@@ -4,6 +4,11 @@ Emberspective.Router.map ->
   @resource 'graph', path: '/', ->
     @route 'show', path: '/:stub'
 
+Emberspective.ApplicationRoute = Ember.Route.extend
+  events: 
+    routeTo: ->
+      @transitionTo.apply(@, arguments)
+
 Emberspective.GraphRoute = Ember.Route.extend
   model: -> Emberspective.GraphNode.findAll()
   setupController: (controller, nodes) -> 

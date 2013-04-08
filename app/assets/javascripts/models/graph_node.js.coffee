@@ -28,7 +28,11 @@ Emberspective.GraphNode.FIXTURE_DATA =
     description: "The JavaScript framework you know and love."
     children: [
       {
-        name: "PerfSHIT"
+        name: "Snork"
+        description: "Foo"
+      },
+      {
+        name: "Bork"
         description: "Foo"
       },
       {
@@ -40,8 +44,60 @@ Emberspective.GraphNode.FIXTURE_DATA =
         description: "Router Stuff"
         children: [
           {
+            name: "Blorg"
+            description: "Transition Stuff"
+            children: [
+              {
+                name: "Blorg"
+                description: "Transition Stuff"
+              },
+              {
+                name: "Transitions"
+                description: "Transition Stuff"
+              },
+              {
+                name: "OMG"
+                description: "oh my god"
+              },
+            ]
+          },
+          {
             name: "Transitions"
             description: "Transition Stuff"
+            children: [
+              {
+                name: "Blorg"
+                description: "Transition Stuff"
+              },
+              {
+                name: "Transitions"
+                description: "Transition Stuff"
+              },
+              {
+                name: "OMG"
+                description: "oh my god"
+                children: [
+                  {
+                    name: "Blorg"
+                    description: "Transition Stuff"
+                  },
+                  {
+                    name: "OMG"
+                    description: "oh my god"
+                    children: [
+                      {
+                        name: "Blorg"
+                        description: "Transition Stuff"
+                      },
+                      {
+                        name: "OMG"
+                        description: "oh my god"
+                      },
+                    ]
+                  },
+                ]
+              },
+            ]
           },
           {
             name: "OMG"

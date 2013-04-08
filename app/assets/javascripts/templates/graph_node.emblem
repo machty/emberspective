@@ -4,8 +4,8 @@
   if parent
     p 
       ' Child of
-      linkTo 'graph.show' parent: parent.name
+      linkTo 'graph.show' parent bubbles=false: parent.name
 
   if children
     ul = each children
-      li: linkTo 'graph.show' this: name
+      li: linkTo 'graph.show' this bubbles=false: name

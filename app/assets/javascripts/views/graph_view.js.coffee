@@ -5,7 +5,7 @@ config =
   maxScale: 1
   minScale: 0
   perspective: 1000
-  transitionDuration: 1000
+  transitionDuration: 700
 
 f = (num) -> num.toFixed(3)
 
@@ -76,6 +76,11 @@ Emberspective.GraphNodeView = Ember.View.extend Emberspective.StyleByHashMixin,
                  scaleString(transform.scale)
   ).observes('transform')
 
+  click: (e) ->
+    e.preventDefault()
+    ctrl = @get('controller')
+    ctrl.send 'routeTo', 'graph.show', ctrl.get('content')
+
 initialCanvasAndRootCSS = 
   'transform-style': 'preserve-3d'
   'transform-origin': 'top left'
@@ -94,10 +99,16 @@ Emberspective.GraphCanvasView = Ember.CollectionView.extend Emberspective.StyleB
 
   createChildView: (view, attrs) ->
     # Override createChildView to inject a GraphNodeController.
-    view = @_super(view, attrs)
-    nodeObject = view.get('content')
-    view.set 'controller', @get('controller').controllerForNode(nodeObject)
-    view
+    attrs.controller = @get('controller').controllerForNode(attrs.content)
+    @_super(view, attrs)
+
+  reorient: ( ->
+    transform = @get('controller.currentTransition.transform')
+    return unless transform
+    @css
+      transform: rotateString(transform.rotation, true) + translateString(transform.translation)
+      transitionDuration: "#{config.transitionDuration}ms"
+  ).observes('controller.currentTransition')
 
 Emberspective.GraphView = Ember.ContainerView.extend Emberspective.StyleByHashMixin,
   classNames: 'graph-view'.w()
@@ -112,6 +123,23 @@ Emberspective.GraphView = Ember.ContainerView.extend Emberspective.StyleByHashMi
     translate: { x: 0, y: 0, z: 0 }
     rotate:    { x: 0, y: 0, z: 0 }
     scale:     1
+
+  reorient: ( ->
+    transform = @get('controller.currentTransition.transform')
+    return unless transform
+    @css
+      transform: rotateString(transform.rotation, true) + translateString(transform.translation)
+      transform: perspectiveString(config.perspective / transform.scale) + scaleString(transform.scale)
+      #transitionDuration: "#{config.transitionDuration}ms"
+  ).observes('controller.currentTransition')
+
+            #css(root, {
+                #// to keep the perspective look similar for different scales
+                #// we need to 'scale' the perspective, too
+                #transform: perspective( config.perspective / targetScale ) + scale( targetScale ),
+                #transitionDuration: duration + "ms",
+                #transitionDelay: (zoomin ? delay : 0) + "ms"
+            #});
 
   didInsertElement: ->
     @_super()

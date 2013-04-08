@@ -7,12 +7,6 @@ Emberspective.GraphNodeController = Ember.ObjectController.extend
   isLeaf: Ember.computed.empty('children')
   isRoot: Ember.computed.empty('parent')
 
-  # A polar path is an array of (angle, distance) that
-  # describes how to get this node from the center Ember.js node.
-  #polarPath: ( ->
-    #(@get('parentController.polarPath') || []).concat [@get('localPolarPath')]
-  #).property('parentController.polarPath')
-
   transform: Emberspective.SpatialTransform.create()
 
   # Angle in which this node is shooting out from its parent. Ignored for root.
@@ -33,7 +27,6 @@ Emberspective.GraphNodeController = Ember.ObjectController.extend
     children.forEach (node, index, {length}) ->
 
       nc = graphController.controllerForNode(node)
-      console.log Ember.guidFor(nc)
 
       rads = index / length * 2 * Math.PI + angle
 
@@ -62,18 +55,24 @@ Emberspective.GraphController = Ember.ArrayController.extend
   currentNode: null
   _previousNode: null
 
+  currentTransition: null
+
   currentNodeChanged: ( ->
     if @_previousNode
-      @controllerForNode(@_previousNode).set 'active', false
+      pnc = @controllerForNode(@_previousNode)
+      previousTransform = pnc.get('transform')
+      pnc.set 'active', false
 
     currentNode = @get('currentNode')
-    @controllerForNode(currentNode).set 'active', true
+    currentNodeController = @controllerForNode(currentNode)
+    currentNodeController.set 'active', true
     @_previousNode = currentNode
 
+    currentTransform = currentNodeController.get('transform')
+
     # Now perform the transform to zoom in on the active node.
-
-
-
-
+    @set 'currentTransition', Emberspective.OrientationTransition.between(previousTransform, currentTransform)
   ).observes('currentNode')
+
+  _transitionIsDelayed: false
 

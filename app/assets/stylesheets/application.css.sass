@@ -21,8 +21,14 @@ body
     padding-top: 70px
     text-align: center
 
+  //opacity: 0.7
   &.active
+    //opacity: 1
+    background: #DAA9A9
     z-index: 10
+
+  cursor: pointer
+  +transition(all, 0.3s)
 
 .application-view
   +clearfix
@@ -36,9 +42,14 @@ body
   top: 0
   bottom: 0
   width: 300px
-  z-index: 100
+  z-index: 6000
 
 #graph-container
   +position(absolute, 0px 0px 0px 300px)
+  overflow: hidden
 
-
+//@media only screen and (max-device-width: 480px)
+//#side-panel
+  //display: none !important
+//#graph-container
+  //left: 0 !important
