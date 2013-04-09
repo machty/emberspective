@@ -31,6 +31,10 @@ Emberspective.GraphNodeController = Ember.ObjectController.extend
       rads = index / length * 2 * Math.PI + angle
 
       childTransform = transform.radiate(rads, 300).translate(z: -400)
+                                #.rotate(x: (Math.random()*180) - 90)
+                                #.rotate(y: (Math.random()*180) - 90)
+      #childTransform.rotation.y = (Math.random() * 180) - 90
+      #childTransform.rotation.z = (Math.random() * 180) - 90
 
       nc.setProperties
         transform: childTransform

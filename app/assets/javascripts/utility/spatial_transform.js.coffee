@@ -26,13 +26,20 @@ Emberspective.SpatialTransform = Ember.CoreObject.extend
     c
 
   translate: (t) ->
+    @_applyTo 'translation', t
+
+  rotate: (t) ->
+    @_applyTo 'rotation', t
+
+  _applyTo: (prop, values) ->
     c = @clone()
-    ct = c.translation
+    t = values
+    ct = c[prop]
     ct = { x: ct.x, y: ct.y, z: ct.z }
     ct.x += t.x if t.x
     ct.y += t.y if t.y
     ct.z += t.z if t.z
-    c.translation = ct
+    c[prop] = ct
     c
 
   radiate: (rads, distance) ->
